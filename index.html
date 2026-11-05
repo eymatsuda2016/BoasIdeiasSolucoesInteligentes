@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070b14">
+    <meta name="description" content="Desenvolvimento de sistemas, aplicativos, sites e automações para empresas que querem trabalhar melhor com tecnologia.">
+    <title>Boas Ideias Soluções Inteligentes | Tecnologia para sua empresa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#070b14",
+              panel: "#0d1422",
+              line: "#1d2b40",
+              brand: "#4da3ff",
+              action: "#27d98a"
+            },
+            boxShadow: {
+              glow: "0 0 70px rgba(49, 130, 246, .16)"
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      #world-clock-zone {
+        color: #f1f5f9;
+      }
+
+      #world-clock-zone option {
+        color: #f8fafc;
+        background-color: #0d1422;
+      }
+
+      body {
+        background-color: #070b14;
+        background-image:
+          linear-gradient(180deg, rgba(7, 11, 20, .42), rgba(7, 11, 20, .64) 38%, rgba(7, 11, 20, .88)),
+          url("Img/Ambiente de Trabalho.jpg");
+        background-position: center, center 58%;
+        background-size: cover, cover;
+        background-attachment: fixed;
+      }
+
+      .grid-pattern {
+        background-image: linear-gradient(rgba(120, 160, 220, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 160, 220, .055) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 88%);
+      }
+
+      .glass {
+        background: rgba(13, 20, 34, .78);
+        backdrop-filter: blur(16px);
+      }
+
+      .dashboard-panel {
+        background: linear-gradient(140deg, rgba(69, 34, 20, .96), rgba(36, 24, 17, .97) 68%, rgba(31, 20, 16, .98));
+      }
+
+      .dashboard-glow {
+        background: rgba(249, 115, 22, .16);
+      }
+
+      .service-card {
+        background: linear-gradient(140deg, rgba(63, 39, 26, .94), rgba(39, 28, 21, .96) 58%, rgba(29, 22, 18, .98));
+        transition: transform .3s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease;
+      }
+
+      .service-card:hover,
+      .service-card:focus-within {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(252, 211, 77, .75);
+        background: linear-gradient(140deg, #542712, #321e14 58%, #211711);
+        box-shadow: 0 0 0 1px rgba(251, 191, 36, .22), 0 20px 52px rgba(234, 88, 12, .3);
+      }
+
+      .service-card:hover .service-icon,
+      .service-card:focus-within .service-icon {
+        border-color: rgba(252, 211, 77, .55);
+        background: linear-gradient(135deg, rgba(251, 191, 36, .3), rgba(249, 115, 22, .22));
+        color: #fde68a;
+        box-shadow: 0 0 26px rgba(251, 146, 60, .34);
+      }
+
+      .hero-cta {
+        transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease, filter .25s ease;
+      }
+
+      .hero-cta:hover,
+      .hero-cta:focus-visible {
+        transform: translateY(-4px) scale(1.035);
+      }
+
+      .hero-cta-primary:hover,
+      .hero-cta-primary:focus-visible {
+        background: linear-gradient(100deg, #6ee7b7, #34d399 55%, #a3e635);
+        box-shadow: 0 0 0 1px rgba(167, 243, 208, .6), 0 12px 35px rgba(16, 185, 129, .42), 0 0 48px rgba(52, 211, 153, .3);
+        filter: saturate(1.16);
+      }
+
+      .hero-cta-secondary:hover,
+      .hero-cta-secondary:focus-visible {
+        border-color: #fde68a;
+        background: linear-gradient(100deg, rgba(251, 191, 36, .5), rgba(249, 115, 22, .48), rgba(244, 63, 94, .4));
+        box-shadow: 0 0 0 1px rgba(253, 230, 138, .42), 0 12px 35px rgba(234, 88, 12, .38), 0 0 48px rgba(251, 146, 60, .24);
+        filter: saturate(1.2);
+      }
+
+      .hero-cta svg {
+        transition: transform .25s ease;
+      }
+
+      .hero-cta-primary:hover svg,
+      .hero-cta-primary:focus-visible svg {
+        transform: translateX(4px);
+      }
+
+      .hero-cta-secondary:hover svg,
+      .hero-cta-secondary:focus-visible svg {
+        transform: translateY(3px);
+      }
+
+      .hero-cta-gold:hover,
+      .hero-cta-gold:focus-visible {
+        background: linear-gradient(100deg, rgba(251, 191, 36, .18), rgba(249, 115, 22, .2));
+        box-shadow: 0 0 0 1px rgba(253, 230, 138, .42), 0 12px 35px rgba(234, 88, 12, .3), 0 0 42px rgba(251, 191, 36, .2);
+        color: #fde68a;
+      }
+
+      .hero-cta-gold:hover svg,
+      .hero-cta-gold:focus-visible svg {
+        transform: translateX(4px);
+      }
+
+      .contact-intro {
+        background: linear-gradient(135deg, rgba(124, 45, 18, .92), rgba(69, 30, 12, .94) 56%, rgba(35, 21, 14, .98));
+      }
+
+      .contact-form-panel {
+        background: linear-gradient(125deg, #4b291a 0%, #352218 52%, #241811 100%);
+      }
+
+      .warm-footer {
+        background: linear-gradient(115deg, #51240f 0%, #321b12 48%, #21150f 100%);
+      }
+
+      .promo-banner {
+        background:
+          radial-gradient(ellipse at 92% 8%, rgba(251, 191, 36, .72), transparent 28%),
+          radial-gradient(ellipse at 4% 92%, rgba(251, 113, 133, .72), transparent 34%),
+          linear-gradient(125deg, #9a3412 0%, #ea580c 42%, #be123c 100%);
+      }
+
+      .promo-contact {
+        background: linear-gradient(135deg, #fff7ed, #ffedd5);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden text-slate-100 antialiased selection:bg-brand/30 selection:text-white">
+    <header class="sticky top-0 z-50 border-b border-white/[.07] bg-ink/85 backdrop-blur-xl">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8" aria-label="Navegação principal">
+        <a href="#inicio" class="flex items-center gap-3" aria-label="Boas Ideias Soluções Inteligentes — início">
+          <span class="grid size-10 place-items-center rounded-xl border border-brand/30 bg-brand/10 text-brand">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3Z"/><path d="m3.5 12 8.5 4.5 8.5-4.5M3.5 16.5 12 21l8.5-4.5"/>
+            </svg>
+          </span>
+          <span class="leading-tight">
+            <span class="block text-sm font-bold tracking-wide text-white">Boas Ideias</span>
+            <span class="block text-[11px] text-slate-400">Soluções Inteligentes</span>
+          </span>
+        </a>
+
+        <div class="service-card group inline-flex items-center gap-2 rounded-xl border border-amber-300/25 bg-gradient-to-r from-[#4b291a]/90 to-[#241811]/90 px-2.5 py-2 shadow-[0_8px_28px_rgba(234,88,12,.12)] sm:gap-3 sm:px-4 sm:py-2.5" aria-label="Relógio mundial">
+          <span class="service-icon hidden size-8 shrink-0 place-items-center rounded-lg border border-amber-300/20 bg-amber-300/10 text-amber-300 transition-all duration-300 sm:grid sm:size-9">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-4 sm:size-5" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <span class="min-w-0">
+            <label for="world-clock-zone" class="sr-only">Escolha a cidade para ver o horário mundial</label>
+            <select id="world-clock-zone" class="block max-w-[92px] cursor-pointer truncate bg-transparent text-[10px] font-semibold uppercase tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:max-w-none sm:text-[10px]">
+              <option value="America/Sao_Paulo" selected>Brasília</option>
+              <option value="Asia/Dubai">Dubai</option>
+              <option value="Europe/Lisbon">Lisboa</option>
+              <option value="Europe/London">Londres</option>
+              <option value="America/Los_Angeles">Los Angeles</option>
+              <option value="Europe/Moscow">Moscou</option>
+              <option value="America/New_York">Nova York</option>
+              <option value="America/Santiago">Santiago</option>
+              <option value="America/Sao_Paulo">São Paulo</option>
+              <option value="Asia/Tokyo">Tóquio</option>
+              <option value="Australia/Sydney">Sydney</option>
+            </select>
+            <time id="world-clock-time" class="block font-mono text-sm font-bold tabular-nums tracking-wide text-amber-100 sm:mt-0.5 sm:text-base" aria-live="off"></time>
+            <span id="world-clock-date" class="hidden text-[11px] capitalize text-orange-100/65 sm:block"></span>
+          </span>
+        </div>
+
+        <div class="hidden items-center gap-8 md:flex">
+          <a class="text-sm text-slate-300 transition hover:text-white" href="#inicio">Início</a>
+          <a class="text-sm text-slate-300 transition hover:text-white" href="#servicos">Serviços</a>
+          <a class="text-sm text-slate-300 transition hover:text-white" href="#diferenciais">Diferenciais</a>
+          <a class="text-sm text-slate-300 transition hover:text-white" href="#contato">Contato</a>
+        </div>
+
+        <button type="button" data-banner-facebook class="hero-cta hero-cta-primary inline-flex items-center gap-2 rounded-xl bg-action px-4 py-2.5 text-sm font-semibold text-ink shadow-[0_8px_30px_rgba(39,217,138,.16)] focus:outline-none focus:ring-2 focus:ring-action focus:ring-offset-2 focus:ring-offset-ink">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-4" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-5.3A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 9.5c.3 2 2 3.7 4 4l1.2-1.2 2 .8c-.2 1.3-1.3 2.1-2.6 2-3.1-.3-5.7-2.9-6-6-.1-1.3.7-2.4 2-2.6l.8 2-1.4 1Z"/>
+          </svg>
+          <span class="hidden sm:inline">Fale no WhatsApp</span>
+          <span class="sm:hidden">WhatsApp</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="relative isolate scroll-mt-24 overflow-hidden">
+        <div aria-hidden="true" class="grid-pattern absolute inset-x-0 top-0 -z-10 h-[680px]"></div>
+        <div aria-hidden="true" class="absolute -left-40 top-20 -z-10 size-[500px] rounded-full bg-blue-500/10 blur-[120px]"></div>
+        <div class="mx-auto grid min-h-[680px] max-w-7xl items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-10 lg:py-24">
+          <div class="max-w-2xl">
+            <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/[.08] px-3.5 py-2 text-xs font-medium text-blue-200">
+              <span class="size-1.5 rounded-full bg-action shadow-[0_0_12px_#27d98a]"></span>
+              Tecnologia feita para o dia a dia da sua empresa
+            </div>
+            <h1 class="text-4xl font-semibold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Menos tarefas manuais.<br>
+              <span class="bg-gradient-to-r from-blue-300 to-cyan-200 bg-clip-text text-transparent">Mais negócio em movimento.</span>
+            </h1>
+            <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+              Criamos sistemas, aplicativos e sites sob medida — e automatizamos processos para sua empresa ganhar tempo, organização e espaço para crescer.
+            </p>
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <button type="button" data-banner-facebook class="hero-cta hero-cta-primary inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-action px-6 py-3 text-sm font-semibold text-ink shadow-[0_8px_30px_rgba(39,217,138,.16)] focus:outline-none focus:ring-2 focus:ring-action focus:ring-offset-2 focus:ring-offset-ink">
+                Solicitar orçamento
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-4" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <a href="#servicos" class="hero-cta hero-cta-secondary group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-amber-300/50 bg-gradient-to-r from-amber-400/20 via-orange-500/20 to-rose-500/20 px-6 py-3 text-sm font-semibold text-amber-100 shadow-[0_8px_30px_rgba(234,88,12,.12)] focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-ink">
+                Conhecer serviços
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-4 transition-transform duration-300 group-hover:translate-y-0.5" stroke="currentColor" stroke-width="2"><path d="M12 5v14m-7-7 7 7 7-7"/></svg>
+              </a>
+            </div>
+            <div class="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-slate-400">
+              <span class="inline-flex items-center gap-2"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none" class="size-4 text-action" stroke="currentColor" stroke-width="1.8"><path d="m4 10 4 4 8-8"/></svg> Soluções personalizadas</span>
+              <span class="inline-flex items-center gap-2"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none" class="size-4 text-action" stroke="currentColor" stroke-width="1.8"><path d="m4 10 4 4 8-8"/></svg> Suporte pós-entrega</span>
+              <span class="inline-flex items-center gap-2"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none" class="size-4 text-action" stroke="currentColor" stroke-width="1.8"><path d="m4 10 4 4 8-8"/></svg> Garantia de 90 dias</span>
+            </div>
+          </div>
+
+          <div class="relative mx-auto w-full max-w-xl">
+            <div aria-hidden="true" class="dashboard-glow absolute -inset-8 rounded-[2rem] blur-3xl"></div>
+            <div class="dashboard-panel relative overflow-hidden rounded-2xl border border-orange-200/20 shadow-[0_0_70px_rgba(249,115,22,.13)]">
+              <div class="flex items-center justify-between border-b border-orange-100/10 px-5 py-4">
+                <div class="flex items-center gap-2">
+                  <span class="size-2.5 rounded-full bg-rose-400/80"></span><span class="size-2.5 rounded-full bg-amber-300/80"></span><span class="size-2.5 rounded-full bg-action/80"></span>
+                </div>
+                <span class="text-[11px] font-semibold tracking-wide text-amber-200/80">PAINEL DE GESTÃO</span>
+                <span class="size-6"></span>
+              </div>
+              <div class="p-5 sm:p-7">
+                <div class="flex items-start justify-between gap-4">
+                  <div><p class="text-xs text-slate-400">Visão geral</p><h2 class="mt-1 text-lg font-semibold text-white">Sua operação, mais simples</h2></div>
+                  <span class="rounded-lg border border-action/20 bg-action/10 px-2.5 py-1 text-[10px] text-emerald-300">● Atualizado</span>
+                </div>
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                  <div class="service-card rounded-xl border border-orange-100/10 bg-black/15 p-4">
+                    <p class="text-xs text-slate-400">Pedidos do dia</p><p class="mt-2 text-2xl font-semibold text-white">128</p>
+                    <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"><div class="h-full w-[72%] rounded-full bg-gradient-to-r from-amber-400 to-orange-400"></div></div>
+                  </div>
+                  <div class="service-card rounded-xl border border-orange-100/10 bg-black/15 p-4">
+                    <p class="text-xs text-slate-400">Tarefas automatizadas</p><p class="mt-2 text-2xl font-semibold text-white">84<span class="text-sm text-slate-400">%</span></p>
+                    <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"><div class="h-full w-[84%] rounded-full bg-action"></div></div>
+                  </div>
+                </div>
+                <div class="service-card mt-4 rounded-xl border border-orange-100/10 bg-black/15 p-4">
+                  <div class="flex items-center justify-between"><p class="text-xs font-medium text-slate-300">Fluxo de trabalho</p><span class="text-[10px] text-slate-500">Últimos 7 dias</span></div>
+                  <div class="mt-5 flex h-28 items-end justify-between gap-2" aria-label="Gráfico ilustrativo de atividade crescente">
+                    <span class="h-[34%] w-full rounded-t bg-orange-800/70"></span><span class="h-[48%] w-full rounded-t bg-orange-700/80"></span><span class="h-[40%] w-full rounded-t bg-amber-700/80"></span><span class="h-[66%] w-full rounded-t bg-orange-600/90"></span><span class="h-[57%] w-full rounded-t bg-amber-600/90"></span><span class="h-[78%] w-full rounded-t bg-orange-500"></span><span class="h-full w-full rounded-t bg-gradient-to-t from-orange-600 to-amber-300"></span>
+                  </div>
+                  <div class="mt-2 flex justify-between text-[9px] text-slate-500"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div>
+                </div>
+                <div class="service-card mt-4 flex items-center gap-3 rounded-xl border border-amber-300/20 p-3.5">
+                  <span class="grid size-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-orange-400/20 to-amber-300/15 text-amber-300"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></span>
+                  <p class="text-xs leading-5 text-slate-300">Um painel como este pode ser pensado para a rotina e as necessidades do seu negócio.</p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card group absolute -bottom-5 -left-4 hidden items-center gap-3 rounded-xl border border-white/10 px-4 py-3 shadow-xl sm:flex">
+              <span class="service-icon grid size-9 place-items-center rounded-lg border border-amber-300/25 bg-gradient-to-br from-amber-400/15 to-orange-500/10 text-amber-300 transition-all duration-300"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.8"><path d="M4 13a8 8 0 0 1 16 0M6 13h12M7 17h10M9 21h6"/></svg></span>
+              <span><span class="block text-xs font-semibold text-white">Feito para o seu negócio</span><span class="mt-0.5 block text-[10px] text-slate-400">Da ideia à operação</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" class="scroll-mt-24 border-y border-white/[.06] bg-ink/30 py-20 sm:py-24">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <span class="text-xs font-semibold uppercase tracking-[.2em] text-brand">O que fazemos</span>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Tecnologia que resolve o que trava sua rotina</h2>
+            <p class="mt-4 leading-7 text-slate-400">Do primeiro site ao sistema que organiza sua operação: escolha o próximo passo e conte com uma solução pensada para você.</p>
+          </div>
+          <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6">
+              <span class="service-icon grid size-12 place-items-center rounded-xl border border-amber-300/25 bg-gradient-to-br from-amber-400/15 to-orange-500/10 text-amber-300 transition-all duration-300">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M7 8h4m-4 4h7"/></svg>
+              </span>
+              <h3 class="mt-5 text-lg font-semibold text-white">Apps &amp; sistemas sob medida</h3>
+              <p class="mt-3 min-h-[72px] text-sm leading-6 text-slate-400">Chega de planilhas desconectadas e processos difíceis de acompanhar. Tenha ferramentas que se adaptam à forma como sua empresa trabalha.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-action">✓</span> Sistemas de gestão e plataformas SaaS</li>
+                <li class="flex gap-2"><span class="text-action">✓</span> Aplicações web e aplicativos mobile</li>
+                <li class="flex gap-2"><span class="text-action">✓</span> Integrações e funcionalidades personalizadas</li>
+              </ul>
+              <button type="button" data-banner-facebook data-banner-message="Quero conversar sobre um app ou sistema sob medida." class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 transition hover:text-amber-100">Conversar sobre sistemas <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span></button>
+            </article>
+
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6">
+              <span class="service-icon grid size-12 place-items-center rounded-xl border border-orange-300/25 bg-gradient-to-br from-orange-400/15 to-rose-500/10 text-orange-300 transition-all duration-300">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5m8-5v5M7 13h3m4 0h3m-10 4h3m4 0h3"/></svg>
+              </span>
+              <h3 class="mt-5 text-lg font-semibold text-white">Sites &amp; landing pages</h3>
+              <p class="mt-3 min-h-[72px] text-sm leading-6 text-slate-400">Sua empresa precisa ser encontrada e transmitir confiança. Criamos experiências rápidas e responsivas que mostram seu valor e facilitam o contato.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-action">✓</span> Sites institucionais e catálogos digitais</li>
+                <li class="flex gap-2"><span class="text-action">✓</span> Landing pages com foco em conversão</li>
+                <li class="flex gap-2"><span class="text-action">✓</span> Estrutura preparada para SEO e mobile</li>
+              </ul>
+              <button type="button" data-banner-facebook data-banner-message="Quero conversar sobre um site ou landing page para minha empresa." class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 transition hover:text-amber-100">Conversar sobre meu site <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span></button>
+            </article>
+
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6 md:col-span-2 lg:col-span-1">
+              <span class="service-icon grid size-12 place-items-center rounded-xl border border-orange-300/25 bg-gradient-to-br from-orange-400/15 to-amber-500/10 text-orange-300 transition-all duration-300">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="1.7"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg>
+              </span>
+              <h3 class="mt-5 text-lg font-semibold text-white">Automação &amp; consultoria de TI</h3>
+              <p class="mt-3 min-h-[72px] text-sm leading-6 text-slate-400">Reduza tarefas repetitivas, organize atendimentos e conte com apoio técnico para manter sua infraestrutura funcionando melhor.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-300">
+                <li class="flex gap-2"><span class="text-action">✓</span> Workflows e automações de processos</li>
+                <li class="flex gap-2"><span class="text-action">✓</span> Chatbots para apoiar o atendimento</li>
+                <li class="flex gap-2"><span class="text-action">✓</span> Consultoria, suporte e infraestrutura de TI</li>
+              </ul>
+              <button type="button" data-banner-facebook data-banner-message="Quero conversar sobre automação ou consultoria de TI." class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 transition hover:text-amber-100">Conversar sobre automação <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span></button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="diferenciais" class="scroll-mt-24 py-20 sm:py-24">
+        <div class="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-[.2em] text-brand">Do começo ao pós-entrega</span>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Uma parceria pensada para durar</h2>
+            <p class="mt-5 leading-7 text-slate-400">Tecnologia precisa funcionar na prática. Por isso, alinhamos expectativas, construímos com cuidado e permanecemos por perto depois da entrega.</p>
+            <button type="button" data-banner-facebook data-banner-message="Quero tirar dúvidas sobre o atendimento e a garantia dos serviços." class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-action transition hover:text-emerald-200">Tire suas dúvidas pelo WhatsApp <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6">
+              <span class="service-icon inline-block rounded-lg text-4xl font-semibold tracking-tight text-amber-300 transition-all duration-300">90<span class="text-xl"> dias</span></span>
+              <h3 class="mt-3 font-semibold text-white">Garantia sobre o serviço</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-400">Garantia de 90 dias a partir da entrega, conforme o escopo do serviço contratado.</p>
+            </article>
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6">
+              <span class="service-icon grid size-10 place-items-center rounded-xl border border-amber-300/25 bg-gradient-to-br from-amber-400/15 to-orange-500/10 text-amber-300 transition-all duration-300"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <h3 class="mt-4 font-semibold text-white">Qualidade e evolução</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-400">Código organizado e escalável, preparado para acompanhar novas necessidades do negócio.</p>
+            </article>
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6">
+              <span class="service-icon grid size-10 place-items-center rounded-xl border border-orange-300/25 bg-gradient-to-br from-orange-400/15 to-rose-500/10 text-orange-300 transition-all duration-300"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-5.3A8.4 8.4 0 1 1 21 11.5Z"/></svg></span>
+              <h3 class="mt-4 font-semibold text-white">Suporte dedicado</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-400">Acompanhamento pós-entrega para orientar o uso e apoiar a continuidade da solução.</p>
+            </article>
+            <article class="service-card group rounded-2xl border border-white/[.09] p-6">
+              <span class="service-icon grid size-10 place-items-center rounded-xl border border-orange-300/25 bg-gradient-to-br from-orange-400/15 to-amber-500/10 text-orange-300 transition-all duration-300"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span>
+              <h3 class="mt-4 font-semibold text-white">Atendimento personalizado</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-400">Conversa próxima, escopo claro e solução adequada à realidade da sua empresa.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="border-y border-white/[.06] bg-ink/35 py-20 sm:py-24">
+        <div class="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 md:grid-cols-[.8fr_1.2fr] md:items-center">
+          <div class="relative">
+            <div aria-hidden="true" class="absolute -inset-5 rounded-3xl bg-blue-500/10 blur-2xl"></div>
+            <div class="relative rounded-2xl border border-white/10 bg-panel/90 p-7 sm:p-9">
+              <span class="text-xs font-semibold uppercase tracking-[.2em] text-brand">Boas Ideias Soluções Inteligentes</span>
+              <div class="mt-7 grid grid-cols-2 gap-3">
+                <div class="rounded-xl border border-white/[.08] bg-white/[.025] p-4"><span class="text-2xl text-brand">01</span><p class="mt-2 text-xs text-slate-400">Entender o desafio</p></div>
+                <div class="rounded-xl border border-white/[.08] bg-white/[.025] p-4"><span class="text-2xl text-brand">02</span><p class="mt-2 text-xs text-slate-400">Desenhar a solução</p></div>
+                <div class="rounded-xl border border-white/[.08] bg-white/[.025] p-4"><span class="text-2xl text-action">03</span><p class="mt-2 text-xs text-slate-400">Desenvolver com clareza</p></div>
+                <div class="rounded-xl border border-white/[.08] bg-white/[.025] p-4"><span class="text-2xl text-action">04</span><p class="mt-2 text-xs text-slate-400">Acompanhar a entrega</p></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-[.2em] text-brand">Sobre nós</span>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Tecnologia com conversa clara e foco no resultado</h2>
+            <p class="mt-5 leading-7 text-slate-300">A Boas Ideias Soluções Inteligentes trabalha para aproximar a tecnologia dos desafios reais das empresas. Unimos desenvolvimento de software, criação digital, automação e conhecimento em TI para transformar necessidades em soluções úteis.</p>
+            <p class="mt-4 leading-7 text-slate-400">Cada projeto começa entendendo a sua operação. Com entregas organizadas, comunicação acessível e atenção ao que realmente importa, construímos ferramentas que ajudam seu negócio a funcionar melhor — hoje e conforme ele evolui.</p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/[.03] px-3 py-1.5 text-xs text-slate-300">Entrega ágil</span>
+              <span class="rounded-full border border-white/10 bg-white/[.03] px-3 py-1.5 text-xs text-slate-300">Escopo transparente</span>
+              <span class="rounded-full border border-white/10 bg-white/[.03] px-3 py-1.5 text-xs text-slate-300">Foco na sua operação</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" class="scroll-mt-24 relative overflow-hidden py-20 sm:py-24">
+        <div aria-hidden="true" class="absolute -right-32 top-10 size-96 rounded-full bg-action/[.07] blur-[100px]"></div>
+        <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <div class="grid overflow-hidden rounded-3xl border border-amber-200/20 shadow-2xl lg:grid-cols-[.9fr_1.1fr]">
+            <div class="contact-intro flex flex-col justify-between p-7 sm:p-10 lg:p-12">
+              <div>
+                <span class="inline-flex items-center gap-2 rounded-full border border-amber-200/35 bg-amber-300/15 px-3.5 py-2 text-sm font-bold tracking-wide text-amber-100 shadow-[0_0_24px_rgba(251,146,60,.16)]">
+                  <span class="size-2 rounded-full bg-amber-300 shadow-[0_0_12px_rgba(251,191,36,.9)]"></span>
+                  Vamos conversar?
+                </span>
+                <h2 class="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">Sua próxima melhoria pode começar com uma mensagem.</h2>
+                <p class="mt-5 leading-7 text-slate-300">Conte o que está tomando tempo ou impedindo sua empresa de avançar. Vamos entender o cenário e conversar sobre o melhor caminho.</p>
+              </div>
+              <div class="mt-10 border-t border-white/10 pt-6">
+                <p class="text-sm font-medium text-white">Prefere falar direto?</p>
+                <button type="button" data-banner-facebook class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-amber-200 hover:text-amber-100">
+                  Iniciar conversa no WhatsApp <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </div>
+
+            <form id="contact-form" class="contact-form-panel border-t border-amber-100/15 p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+              <h3 class="bg-gradient-to-r from-amber-100 via-orange-200 to-amber-300 bg-clip-text text-xl font-semibold text-transparent">Fale sobre o seu projeto</h3>
+              <p class="mt-2 text-sm text-amber-50/70">Preencha os campos e, em seguida, escolha com quem deseja continuar pelo WhatsApp.</p>
+              <div class="mt-7 grid gap-5 sm:grid-cols-2">
+                <label class="block">
+                  <span class="text-sm font-medium text-slate-300">Seu nome</span>
+                  <input required name="nome" autocomplete="name" placeholder="Como podemos chamar você?" class="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-brand/60 focus:ring-2 focus:ring-brand/20">
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium text-slate-300">Empresa / segmento</span>
+                  <input required name="empresa" autocomplete="organization" placeholder="Ex.: oficina, comércio..." class="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-brand/60 focus:ring-2 focus:ring-brand/20">
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium text-slate-300">Seu WhatsApp</span>
+                  <input required name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" class="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-brand/60 focus:ring-2 focus:ring-brand/20">
+                </label>
+                <label class="block">
+                  <span class="text-sm font-medium text-slate-300">O que você precisa?</span>
+                  <select required name="necessidade" class="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm text-slate-300 outline-none transition focus:border-brand/60 focus:ring-2 focus:ring-brand/20">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option>App ou sistema sob medida</option>
+                    <option>Site ou landing page</option>
+                    <option>Automação ou chatbot</option>
+                    <option>Suporte ou consultoria de TI</option>
+                    <option>Outro projeto</option>
+                  </select>
+                </label>
+                <div class="sm:col-span-2">
+                  <button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-action px-6 py-3 text-sm font-semibold text-ink transition hover:bg-emerald-300 focus:outline-none focus:ring-2 focus:ring-action focus:ring-offset-2 focus:ring-offset-panel">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-4" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-5.3A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+                    Enviar pelo WhatsApp
+                  </button>
+                  <p class="mt-3 text-center text-xs leading-5 text-slate-500">Ao continuar, seus dados serão incluídos na mensagem do WhatsApp. Este formulário não armazena informações.</p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="warm-footer border-t border-amber-300/25">
+      <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.3fr_.7fr_1fr]">
+          <div>
+            <a href="#inicio" class="inline-flex items-center gap-3">
+              <span class="grid size-10 place-items-center rounded-xl border border-amber-200/30 bg-amber-300/10 text-amber-200"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="1.8"><path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3Z"/><path d="m3.5 12 8.5 4.5 8.5-4.5M3.5 16.5 12 21l8.5-4.5"/></svg></span>
+              <span><span class="block text-sm font-bold text-white">Boas Ideias</span><span class="block text-[11px] text-amber-100/70">Soluções Inteligentes</span></span>
+            </a>
+            <p class="mt-4 max-w-sm text-sm leading-6 text-amber-50/75">Desenvolvimento, automação e consultoria de TI para ajudar empresas a trabalhar melhor com tecnologia.</p>
+          </div>
+          <div>
+            <h2 class="text-sm font-semibold text-white">Navegação</h2>
+            <ul class="mt-4 space-y-2.5 text-sm text-amber-50/70">
+              <li><a class="transition hover:text-amber-200" href="#inicio">Início</a></li>
+              <li><a class="transition hover:text-amber-200" href="#servicos">Serviços</a></li>
+              <li><a class="transition hover:text-amber-200" href="#diferenciais">Diferenciais</a></li>
+              <li><a class="transition hover:text-amber-200" href="#contato">Contato</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-sm font-semibold text-white">Atendimento</h2>
+            <p class="mt-4 text-sm leading-6 text-amber-50/75">Entre em contato para consultar disponibilidade e horário de atendimento.</p>
+            <button type="button" data-banner-facebook data-banner-message="Quero saber mais sobre os serviços e o atendimento." class="hero-cta hero-cta-gold mt-3 inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm font-semibold text-amber-200">Fale pelo WhatsApp <span aria-hidden="true" class="transition-transform">↗</span></button>
+          </div>
+        </div>
+        <div class="mt-9 flex flex-col gap-2 border-t border-amber-100/15 pt-5 text-xs text-amber-100/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>© <span id="current-year"></span> Boas Ideias Soluções Inteligentes. Todos os direitos reservados.</p>
+          <a href="#inicio" class="transition hover:text-amber-100">Voltar ao início ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <dialog id="facebook-banner-dialog" aria-label="Fale com a Boas Ideias Soluções Inteligentes" class="w-[min(92vw,56rem)] max-h-[90vh] max-w-none overflow-y-auto rounded-3xl border border-orange-200/50 bg-[#9a3412] p-0 text-white shadow-2xl backdrop:bg-black/75">
+      <section class="promo-banner relative isolate overflow-hidden px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
+        <div aria-hidden="true" class="absolute -right-20 top-24 -z-10 size-64 rounded-full border border-white/20"></div>
+        <div aria-hidden="true" class="absolute -right-10 top-36 -z-10 size-44 rounded-full border border-white/15"></div>
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2 text-sm font-bold text-white">
+            <span class="grid size-9 place-items-center rounded-xl border border-white/25 bg-white/15">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.8"><path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3Z"/><path d="m3.5 12 8.5 4.5 8.5-4.5M3.5 16.5 12 21l8.5-4.5"/></svg>
+            </span>
+            <span>Boas Ideias <span class="font-medium text-orange-100">Soluções Inteligentes</span></span>
+          </div>
+          <button type="button" id="close-facebook-banner" aria-label="Fechar banner" class="grid size-10 shrink-0 place-items-center rounded-full border border-white/30 bg-black/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="2"><path d="m18 6-12 12M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="mx-auto mt-8 max-w-3xl text-center sm:mt-10">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-[11px] font-bold uppercase tracking-[.18em] text-white shadow-lg">
+            <span class="size-2 rounded-full bg-amber-300 shadow-[0_0_12px_rgba(253,230,138,.95)]"></span>
+            Sua ideia merece sair do papel
+          </span>
+          <h2 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+            Chega de deixar boas ideias para depois.
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-orange-50 sm:text-lg sm:leading-8">
+            Vamos transformar os desafios da sua empresa em tecnologia que simplifica sua rotina e abre caminho para crescer.
+          </p>
+          <p class="mt-6 text-sm font-bold text-white sm:text-base">Escolha com quem quer conversar:</p>
+        </div>
+
+        <div class="mx-auto mt-5 grid max-w-3xl gap-3 sm:grid-cols-2 sm:gap-4">
+          <a id="contact-benedito" href="https://wa.me/554391035666?text=Ol%C3%A1%2C%20Benedito!%20Quero%20tirar%20minha%20ideia%20do%20papel." target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp com Benedito Nunes no número 55 43 9103-5666" class="promo-contact group flex items-center gap-3 rounded-2xl border border-white/70 p-4 text-left shadow-[0_12px_30px_rgba(80,20,10,.24)] transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/70 sm:p-5">
+            <span class="grid size-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-amber-300 to-orange-400 text-orange-950 shadow-md">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-5.3A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 9.5c.3 2 2 3.7 4 4l1.2-1.2 2 .8"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold uppercase tracking-wider text-orange-800/70">Fale com</span>
+              <span class="mt-0.5 block truncate text-base font-extrabold text-orange-950 sm:text-lg">Benedito Nunes</span>
+              <span class="mt-0.5 block text-lg font-black tracking-wide text-orange-700 sm:text-xl">55 43 9103-5666</span>
+              <span class="mt-1 block text-xs font-semibold text-emerald-800">Iniciar conversa ↗</span>
+            </span>
+          </a>
+
+          <a id="contact-eduardo" href="https://wa.me/5543999895935?text=Ol%C3%A1%2C%20Eduardo!%20Quero%20tirar%20minha%20ideia%20do%20papel." target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp com Eduardo Matsuda no número 43 99989-5935" class="promo-contact group flex items-center gap-3 rounded-2xl border border-white/70 p-4 text-left shadow-[0_12px_30px_rgba(80,20,10,.24)] transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-white/70 sm:p-5">
+            <span class="grid size-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-amber-300 to-orange-400 text-orange-950 shadow-md">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="size-6" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-5.3A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 9.5c.3 2 2 3.7 4 4l1.2-1.2 2 .8"/></svg>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-xs font-semibold uppercase tracking-wider text-orange-800/70">Fale com</span>
+              <span class="mt-0.5 block truncate text-base font-extrabold text-orange-950 sm:text-lg">Eduardo Matsuda</span>
+              <span class="mt-0.5 block text-lg font-black tracking-wide text-orange-700 sm:text-xl">43 99989-5935</span>
+              <span class="mt-1 block text-xs font-semibold text-emerald-800">Iniciar conversa ↗</span>
+            </span>
+          </a>
+        </div>
+
+        <p class="mt-6 text-center text-xs font-medium text-white/80">Um bom projeto começa com uma boa conversa. Estamos prontos para ouvir você.</p>
+      </section>
+    </dialog>
+
+    <script>
+      // Troque pelo número da empresa com código do país e DDD, somente dígitos.
+      const whatsappNumber = "5500000000000";
+
+      document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+        const message = link.dataset.whatsapp;
+        link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      });
+
+      const facebookBannerDialog = document.getElementById("facebook-banner-dialog");
+      const contactLinks = [
+        { element: document.getElementById("contact-benedito"), number: "554391035666", greeting: "Benedito" },
+        { element: document.getElementById("contact-eduardo"), number: "5543999895935", greeting: "Eduardo" }
+      ];
+      const setContactMessages = (messageForContact) => {
+        contactLinks.forEach(({ element, number, greeting }) => {
+          element.href = `https://wa.me/${number}?text=${encodeURIComponent(messageForContact(greeting))}`;
+        });
+      };
+
+      document.querySelectorAll("[data-banner-facebook]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const request = button.dataset.bannerMessage || "Quero tirar minha ideia do papel.";
+          setContactMessages((greeting) => `Olá, ${greeting}! ${request}`);
+          facebookBannerDialog.showModal();
+        });
+      });
+      document.getElementById("close-facebook-banner").addEventListener("click", () => {
+        facebookBannerDialog.close();
+      });
+
+      document.getElementById("contact-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const message = [
+          "Olá! Preenchi o formulário no site e gostaria de conversar sobre meu projeto.",
+          `Nome: ${formData.get("nome")}`,
+          `Empresa / segmento: ${formData.get("empresa")}`,
+          `Meu WhatsApp: ${formData.get("telefone")}`,
+          `Necessidade: ${formData.get("necessidade")}`
+        ].join("\n");
+        setContactMessages((greeting) => `Olá, ${greeting}!\n\n${message}`);
+        facebookBannerDialog.showModal();
+      });
+
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      const worldClockZone = document.getElementById("world-clock-zone");
+      const worldClockTime = document.getElementById("world-clock-time");
+      const worldClockDate = document.getElementById("world-clock-date");
+      let worldTimeFormatter;
+      let worldDateFormatter;
+      const setWorldClockZone = () => {
+        const timeZone = worldClockZone.value;
+        worldTimeFormatter = new Intl.DateTimeFormat("pt-BR", {
+          timeZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hourCycle: "h23"
+        });
+        worldDateFormatter = new Intl.DateTimeFormat("pt-BR", {
+          timeZone,
+          weekday: "long",
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        });
+        updateWorldClock();
+      };
+      const updateWorldClock = () => {
+        const now = new Date();
+        worldClockTime.textContent = worldTimeFormatter.format(now);
+        worldClockTime.dateTime = now.toISOString();
+        worldClockDate.textContent = worldDateFormatter.format(now);
+      };
+
+      worldClockZone.addEventListener("change", setWorldClockZone);
+      setWorldClockZone();
+      window.setInterval(updateWorldClock, 1000);
+    </script>
+  </body>
+</html>
